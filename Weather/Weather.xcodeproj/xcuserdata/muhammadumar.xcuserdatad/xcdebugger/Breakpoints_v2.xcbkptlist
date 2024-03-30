@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "60CCD4D9-A55C-4502-BDEB-1C70F95C0753"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "7A575A47-2F1D-4A93-BDDE-E2581A2E4F7F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "443E35D6-C110-4141-803D-BADA3E6416DE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DogBreeds/Network/Service/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "request(_:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "443E35D6-C110-4141-803D-BADA3E6416DE - 8e29308bb12985d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DogBreeds.DefaultNetworkService.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: DogBreeds.DataRequest&gt;(_: &#x3c4;_0_0, completion: (Swift.Result&lt;&#x3c4;_0_0.Response, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DogBreeds"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/muhammadumar/Desktop/WeatherApp/DogBreeds-main/DogBreeds/DogBreeds/Network/Service/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "636">
+               </Location>
+               <Location
+                  uuid = "443E35D6-C110-4141-803D-BADA3E6416DE - 8e29308bb12985d7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DogBreeds.DefaultNetworkService.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: DogBreeds.DataRequest&gt;(_: &#x3c4;_0_0, completion: (Swift.Result&lt;&#x3c4;_0_0.Response, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DogBreeds"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/muhammadumar/Desktop/WeatherApp/DogBreeds-main/DogBreeds/DogBreeds/Network/Service/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "760">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C01589B3-9AD2-4E12-94E1-B7C1A1DE5F02"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DogBreeds/Network/Service/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "request(_:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C01589B3-9AD2-4E12-94E1-B7C1A1DE5F02 - 8e29308bb1299a80"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DogBreeds.DefaultNetworkService.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: DogBreeds.DataRequest&gt;(_: &#x3c4;_0_0, completion: (Swift.Result&lt;&#x3c4;_0_0.Response, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DogBreeds"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/muhammadumar/Desktop/WeatherApp/DogBreeds-main/DogBreeds/DogBreeds/Network/Service/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "1500">
+               </Location>
+               <Location
+                  uuid = "C01589B3-9AD2-4E12-94E1-B7C1A1DE5F02 - 8e29308bb1299a80"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DogBreeds.DefaultNetworkService.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: DogBreeds.DataRequest&gt;(_: &#x3c4;_0_0, completion: (Swift.Result&lt;&#x3c4;_0_0.Response, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DogBreeds"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/muhammadumar/Desktop/WeatherApp/DogBreeds-main/DogBreeds/DogBreeds/Network/Service/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "57"
+                  endingLineNumber = "57"
+                  offsetFromSymbolStart = "1580">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CFC4D16A-317E-4E10-9E5B-07B3B8FC1E82"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DogBreeds/Network/Service/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "request(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FD537379-D619-4FA3-A2BE-FB79F85CCB3F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DogBreeds/Network/Service/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "request(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3672FF9E-429E-4273-BA25-445A5E0E959F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DogBreeds/Network/Service/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "request(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2495295B-A690-4F8E-9BEF-B9E9FFD952EC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DogBreeds/Network/Service/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "request(_:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2495295B-A690-4F8E-9BEF-B9E9FFD952EC - bcc6c077d0198bcf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DogBreeds.DefaultNetworkService.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: DogBreeds.DataRequest&gt;(_: &#x3c4;_0_0, completion: (Swift.Result&lt;&#x3c4;_0_0.Response, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DogBreeds"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/muhammadumar/Desktop/WeatherApp/DogBreeds-main/DogBreeds/DogBreeds/Network/Service/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "3964">
+               </Location>
+               <Location
+                  uuid = "2495295B-A690-4F8E-9BEF-B9E9FFD952EC - bcc6c077d0198bcf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DogBreeds.DefaultNetworkService.request&lt;&#x3c4;_0_0 where &#x3c4;_0_0: DogBreeds.DataRequest&gt;(_: &#x3c4;_0_0, completion: (Swift.Result&lt;&#x3c4;_0_0.Response, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DogBreeds"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/muhammadumar/Desktop/WeatherApp/DogBreeds-main/DogBreeds/DogBreeds/Network/Service/NetworkService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "3980">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DF0F0A5C-0E02-4ABE-9CCB-147B065890FE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DogBreeds/Network/Service/NetworkService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "request(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C0CC79F8-3340-4DEF-AAD6-1FF4BD853560"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DogBreeds/Coordinator/AppCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "push(to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04BC8434-2BEA-4C1A-BC0B-962B5929F5B8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DogBreeds/Coordinator/AppCoordinator.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "set(to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8EB04F3-E5C0-4E58-B063-C3B050BED397"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather/Presentation/Weather/WeatherViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
+            landmarkName = "locationManager(_:didChangeAuthorization:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
