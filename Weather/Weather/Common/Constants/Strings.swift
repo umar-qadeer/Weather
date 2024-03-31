@@ -18,7 +18,8 @@ struct Strings {
         static let cityNotFound = "City name not found"
         static let locaitonDeniedTitle = "Allow permission to use your location"
         static let locaitonDeniedMessage = "Weather app needs access to your location to provide weather details"
-        static let settings =  "Settings"
+        static let openSettings =  "Open Settings"
+        static let permissionDescription =  "Please give location permission from settings app to fetch the weather the data."
     }
     
     struct Error {

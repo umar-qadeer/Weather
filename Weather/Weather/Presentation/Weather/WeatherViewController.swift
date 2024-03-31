@@ -233,7 +233,7 @@ final class WeatherViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .systemBackground
-        view.addSubviews(noDataView, searchStackView, weatherStackView, activityIndicator)
+        view.addSubviews(searchStackView, weatherStackView, noDataView, activityIndicator)
         searchStackView.addArrangedSubviews(searchImageView, searchTextField, refreshButton)
         searchStackView.setCustomSpacing(0, after: searchImageView)
         searchTextField.addSubview(textFieldBottomLine)
@@ -271,7 +271,8 @@ final class WeatherViewController: UIViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: layoutGuide.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor, constant: 30),
             
-            noDataView.centerXAnchor.constraint(equalTo: layoutGuide.centerXAnchor),
+            noDataView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            noDataView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             noDataView.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor)
         ])
     }
@@ -382,7 +383,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
         case .notDetermined:
             locationManager?.requestWhenInUseAuthorization()
         default:
-            AlertBuilder.showAlertWithTitle(title: Strings.Alert.locaitonDeniedTitle, message: Strings.Alert.locaitonDeniedMessage, confirmButtonTitle: Strings.Alert.settings, confirmButtonHandler: { [weak self] in
+            AlertBuilder.showAlertWithTitle(title: Strings.Alert.locaitonDeniedTitle, message: Strings.Alert.locaitonDeniedMessage, confirmButtonTitle: Strings.Alert.openSettings, confirmButtonHandler: { [weak self] in
                 if let url = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     self?.noDataView.isHidden = false

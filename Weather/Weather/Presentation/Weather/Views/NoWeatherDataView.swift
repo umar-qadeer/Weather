@@ -20,9 +20,19 @@ class NoWeatherDataView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = Strings.Error.noData
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.text = Strings.Alert.permissionDescription
         label.font = .systemFont(ofSize: 20)
         return label
+    }()
+    
+    private lazy var openSettingsButton: UIButton = {
+        let button = UIButton()
+        button.setTitle(Strings.Alert.openSettings, for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.addTarget(self, action: #selector(openSettingsButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     // MARK: - Initializers
@@ -40,7 +50,7 @@ class NoWeatherDataView: UIView {
     
     private func setupViews() {
         addSubview(containerStackView)
-        containerStackView.addArrangedSubviews(imageView, titleLabel)
+        containerStackView.addArrangedSubviews(imageView, titleLabel, openSettingsButton)
     }
     
     private func setupConstraints() {
@@ -50,5 +60,13 @@ class NoWeatherDataView: UIView {
             containerStackView.topAnchor.constraint(equalTo: topAnchor),
             containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+    
+    // MARK: - Selectors
+    
+    @objc private func openSettingsButtonTapped() {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
 }
