@@ -7,7 +7,7 @@ struct Weather: Codable {
     var windSpeed: Double?
     var sunrise: String?
     var sunset: String?
-    var timezone: String?
+    var timeZoneIdentifier: String?
     var clouds: Int?
     var detail: WeatherDetail?
 
@@ -17,7 +17,7 @@ struct Weather: Codable {
         case windSpeed = "wind_spd"
         case sunrise
         case sunset
-        case timezone
+        case timeZoneIdentifier = "timezone"
         case clouds
         case detail = "weather"
     }

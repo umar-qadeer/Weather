@@ -293,30 +293,19 @@ final class WeatherViewController: UIViewController {
     
     // MARK: - Helper methods
     
-    private func getDayTime(from date: Date, timezone: String) -> String {
+    private func getStringDate(from date: Date, dateFormat: String, timeZoneIdentifier: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(identifier: timezone)
-        dateFormatter.dateFormat = Constants.DateFormat.dayTime
-        dateFormatter.locale = Locale(identifier: "en")
+        dateFormatter.timeZone = TimeZone(identifier: timeZoneIdentifier)
+        dateFormatter.dateFormat = dateFormat
         return dateFormatter.string(from: date)
     }
     
-    private func getHour(from date: Date) -> Int {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = Constants.DateFormat.hour
-        let stringHour = dateFormatter.string(from: date)
-        // it is safe to force unwrap here due to hour conversion surity
-        return Int(stringHour)!
+    private func getBackgroundColor(for hour: Int) -> UIColor {
+        return (5...18).contains(hour) ? UIColor(resource: .dayBackground) : UIColor(resource: .nightBackground)
     }
     
-    private func getBackgroundColor(for time: Date) -> UIColor {
-        let hour = getHour(from: time)
-        return (1...18).contains(hour) ? UIColor(resource: .dayBackground) : UIColor(resource: .nightBackground)
-    }
-    
-    private func getForegroundColor(for time: Date) -> UIColor {
-        let hour = getHour(from: time)
-        return (1...18).contains(hour) ? .black : .white
+    private func getForegroundColor(for hour: Int) -> UIColor {
+        return (5...18).contains(hour) ? .black : .white
     }
 }
 
@@ -324,14 +313,18 @@ extension WeatherViewController: WeatherViewModelToViewDelegate {
     
     func updateUI() {
         guard let weather = viewModel.weather,
-              let timezone = weather.timezone,
+              let timeZoneIdentifier = weather.timeZoneIdentifier,
               let weatherDetail = weather.detail,
               let temprature = weather.temprature,
               let windSpeed = weather.windSpeed else { return }
         
         let date = Date()
-        view.backgroundColor = getBackgroundColor(for: date)
-        let foregroundColor = getForegroundColor(for: date)
+        let stringHour = getStringDate(from: date, dateFormat: Constants.DateFormat.hour, timeZoneIdentifier: timeZoneIdentifier)
+        
+        guard let hour = Int(stringHour) else { return }
+        
+        view.backgroundColor = getBackgroundColor(for: hour)
+        let foregroundColor = getForegroundColor(for: hour)
         
         searchStackView.isHidden = false
         searchImageView.tintColor = foregroundColor
@@ -348,7 +341,7 @@ extension WeatherViewController: WeatherViewModelToViewDelegate {
         descriptionLabel.textColor = foregroundColor
         
         cityNameLabel.text = weather.cityName
-        dayTimeLabel.text = getDayTime(from: date, timezone: timezone)
+        dayTimeLabel.text = getStringDate(from: date, dateFormat: Constants.DateFormat.dayTime, timeZoneIdentifier: timeZoneIdentifier)
         
         weatherImageView.image = UIImage(systemName: weatherDetail.getWeatherImage())
         
