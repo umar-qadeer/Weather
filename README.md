@@ -5,7 +5,7 @@
 iOS code challange.
 
 ## Demo
-<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWhzaXI2dWUxcDZoZ3V2YjE2ZWJkZTA0bmg1YzJjYWg3ZzNuM2VrdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Jz4X3vN3hpJGkApnnZ/giphy.gif" width="222" height="480" />
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbmZna3NvOWp1ZDR6dTZuZmhuZnlvaHpkbjF2czEzYWcwd3Z3NnBibCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yl9y1sMFSRVX1tGR5b/giphy.gif" width="222" height="480" />
 
 ## Features
 

@@ -10,6 +10,10 @@ struct Strings {
         static let sunset = "Sunset"
     }
     
+    struct Button {
+        static let cancel =  "Cancel"
+    }
+    
     struct Alert {
         static let success = "Success"
         static let error =  "Error"

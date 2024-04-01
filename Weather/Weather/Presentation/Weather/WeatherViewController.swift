@@ -13,10 +13,38 @@ final class WeatherViewController: UIViewController {
     private var viewModel: WeatherViewModel
     private var locationManager: CLLocationManager?
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.refreshControl = refreshControl
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.keyboardDismissMode = .onDrag
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+        return refreshControl
+    }()
+    
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var containerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 50
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     private lazy var searchStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 70
         stackView.alignment = .center
         stackView.isHidden = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -43,23 +71,31 @@ final class WeatherViewController: UIViewController {
         return textField
     }()
     
-    private lazy var textFieldBottomLine: UIView = {
+    private lazy var spacerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        return view
+    }()
+    
+    private lazy var searchCancelButton: UIButton = {
+        let button = UIButton()
+        button.isHidden = true
+        button.contentHorizontalAlignment = .left
+        button.setTitle(Strings.Button.cancel, for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        button.addTarget(self, action: #selector(searchCancelButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var searchTextFieldBottomLine: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 1).isActive = true
         return view
-    }()
-    
-    private lazy var refreshButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "arrow.circlepath"), for: .normal)
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular, scale: .large)
-        button.setPreferredSymbolConfiguration(largeConfig, forImageIn: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        button.addTarget(self, action: #selector(refreshButtonTapped), for: .touchUpInside)
-        return button
     }()
     
     private lazy var weatherStackView: UIStackView = {
@@ -175,12 +211,12 @@ final class WeatherViewController: UIViewController {
         return view
     }()
     
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.color = .systemGray3
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        return activityIndicator
+    private lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let activityIndicatorView = UIActivityIndicatorView(style: .large)
+        activityIndicatorView.color = .systemGray3
+        activityIndicatorView.hidesWhenStopped = true
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicatorView
     }()
     
     private lazy var noDataView: NoWeatherDataView = {
@@ -225,18 +261,16 @@ final class WeatherViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
     // MARK: - Setup methods
     
     private func setupViews() {
         view.backgroundColor = .systemBackground
-        view.addSubviews(searchStackView, weatherStackView, noDataView, activityIndicator)
-        searchStackView.addArrangedSubviews(searchImageView, searchTextField, refreshButton)
-        searchStackView.setCustomSpacing(0, after: searchImageView)
-        searchTextField.addSubview(textFieldBottomLine)
+        view.addSubview(scrollView)
+        scrollView.addSubview(containerView)
+        containerView.addSubviews(containerStackView, noDataView, activityIndicatorView)
+        containerStackView.addArrangedSubviews(searchStackView, weatherStackView)
+        searchStackView.addArrangedSubviews(searchImageView, searchTextField, spacerView, searchCancelButton)
+        searchTextField.addSubview(searchTextFieldBottomLine)
         weatherStackView.addArrangedSubviews(weatherInfoStackView, infoSeparatorView, weatherDetailStackView)
         weatherInfoStackView.addArrangedSubviews(titleStackView, weatherImageView, descriptionStackView)
         titleStackView.addArrangedSubviews(cityNameLabel, dayTimeLabel)
@@ -249,18 +283,26 @@ final class WeatherViewController: UIViewController {
         let layoutGuide = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-            searchStackView.topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: 15),
-            searchStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            searchStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: layoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: layoutGuide.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: layoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor),
             
-            textFieldBottomLine.leadingAnchor.constraint(equalTo: searchTextField.leadingAnchor),
-            textFieldBottomLine.trailingAnchor.constraint(equalTo: searchTextField.trailingAnchor),
-            textFieldBottomLine.bottomAnchor.constraint(equalTo: searchTextField.bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            containerView.widthAnchor.constraint(equalTo: layoutGuide.widthAnchor),
+            containerView.heightAnchor.constraint(equalTo: layoutGuide.heightAnchor),
             
-            weatherStackView.topAnchor.constraint(equalTo: searchStackView.bottomAnchor, constant: 50),
-            weatherStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            weatherStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            weatherStackView.bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -30),
+            containerStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            containerStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            containerStackView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20),
+            containerStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -30),
+            
+            searchTextFieldBottomLine.leadingAnchor.constraint(equalTo: searchTextField.leadingAnchor),
+            searchTextFieldBottomLine.trailingAnchor.constraint(equalTo: searchTextField.trailingAnchor),
+            searchTextFieldBottomLine.bottomAnchor.constraint(equalTo: searchTextField.bottomAnchor),
             
             firstSeparatorView.leadingAnchor.constraint(equalTo: sunriseView.trailingAnchor, constant: 15),
             firstSeparatorView.bottomAnchor.constraint(equalTo: weatherDetailStackView.bottomAnchor, constant: -15),
@@ -268,20 +310,24 @@ final class WeatherViewController: UIViewController {
             secondSeparatorView.leadingAnchor.constraint(equalTo: windView.trailingAnchor, constant: 15),
             secondSeparatorView.bottomAnchor.constraint(equalTo: weatherDetailStackView.bottomAnchor, constant: -15),
             
-            activityIndicator.centerXAnchor.constraint(equalTo: layoutGuide.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor, constant: 30),
+            noDataView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
+            noDataView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
+            noDataView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             
-            noDataView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            noDataView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            noDataView.centerYAnchor.constraint(equalTo: layoutGuide.centerYAnchor)
+            activityIndicatorView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: 30)
         ])
     }
     
     // MARK: - Selectors
     
-    @objc private func refreshButtonTapped() {
+    @objc private func didPullToRefresh() {
         guard let city = viewModel.weather?.cityName else { return }
         viewModel.getCurrentWeather(for: city)
+    }
+    
+    @objc private func searchCancelButtonTapped() {
+        view.endEditing(true)
     }
     
     @objc private func applicationDidBecomeActive() {
@@ -307,11 +353,19 @@ final class WeatherViewController: UIViewController {
     private func getForegroundColor(for hour: Int) -> UIColor {
         return (5...18).contains(hour) ? .black : .white
     }
+    
+    private func setSearchCancelButtonHidden(isHidden: Bool) {
+        UIView.animate(withDuration: 0.15) { [weak self] in
+            self?.searchCancelButton.isHidden = isHidden
+        }
+    }
 }
 
 extension WeatherViewController: WeatherViewModelToViewDelegate {
     
     func updateUI() {
+        refreshControl.endRefreshing()
+        
         guard let weather = viewModel.weather,
               let timeZoneIdentifier = weather.timeZoneIdentifier,
               let weatherDetail = weather.detail,
@@ -326,14 +380,14 @@ extension WeatherViewController: WeatherViewModelToViewDelegate {
         view.backgroundColor = getBackgroundColor(for: hour)
         let foregroundColor = getForegroundColor(for: hour)
         
+        refreshControl.tintColor = foregroundColor
+        
         searchStackView.isHidden = false
         searchImageView.tintColor = foregroundColor
         searchTextField.tintColor = foregroundColor
         searchTextField.textColor = foregroundColor
-        searchTextField.attributedPlaceholder = NSAttributedString(string: Strings.Weather.searchCityPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: foregroundColor])
-        textFieldBottomLine.backgroundColor = foregroundColor
-        
-        refreshButton.tintColor = foregroundColor
+        searchTextField.attributedPlaceholder = NSAttributedString(string: Strings.Weather.searchCityPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: foregroundColor.withAlphaComponent(0.5)])
+        searchTextFieldBottomLine.backgroundColor = foregroundColor
         
         cityNameLabel.textColor = foregroundColor
         dayTimeLabel.textColor = foregroundColor
@@ -358,11 +412,12 @@ extension WeatherViewController: WeatherViewModelToViewDelegate {
     }
     
     func showError(error: Error) {
+        refreshControl.endRefreshing()
         AlertBuilder.showfailureAlertWithMessage(message: error.localizedDescription, on: self)
     }
     
     func showLoading(_ loading: Bool) {
-        loading ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+        loading ? activityIndicatorView.startAnimating() : activityIndicatorView.stopAnimating()
     }
 }
 
@@ -421,10 +476,18 @@ extension WeatherViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let text = textField.text
-        textField.text = nil
         view.endEditing(true)
         guard let city = text, city.trimmingCharacters(in: CharacterSet.whitespaces).count > 0 else { return true }
         viewModel.getCurrentWeather(for: city)
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        setSearchCancelButtonHidden(isHidden: false)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        setSearchCancelButtonHidden(isHidden: true)
+        textField.text = nil
     }
 }
